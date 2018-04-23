@@ -19,13 +19,13 @@ namespace CityInfo.API
         {
             services.AddMvc()
                 .AddMvcOptions(o => o.OutputFormatters.Add(new XmlDataContractSerializerOutputFormatter())); //We can add new formatter for xml.
-                //We can change the json namingstategy to be as it is in model. For example: standard format is first letter lover case, if we change it, first letter will be as it is in model class.
-                //.AddJsonOptions(j => {
-                //    if(j.SerializerSettings.ContractResolver != null) {
-                //        var castedResolver = j.SerializerSettings.ContractResolver as DefaultContractResolver;
-                //        castedResolver.NamingStrategy = null;
-                //    }
-                //});
+                                                                                                             //We can change the json namingstategy to be as it is in model. For example: standard format is first letter lover case, if we change it, first letter will be as it is in model class.
+                                                                                                             //.AddJsonOptions(j => {
+                                                                                                             //    if(j.SerializerSettings.ContractResolver != null) {
+                                                                                                             //        var castedResolver = j.SerializerSettings.ContractResolver as DefaultContractResolver;
+                                                                                                             //        castedResolver.NamingStrategy = null;
+                                                                                                             //    }
+                                                                                                             //});
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -41,6 +41,7 @@ namespace CityInfo.API
             app.UseStatusCodePages();
 
             app.UseMvc();
+
         }
     }
 }

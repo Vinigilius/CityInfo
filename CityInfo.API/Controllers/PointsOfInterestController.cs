@@ -5,15 +5,24 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using CityInfo.API.Models;
+using Microsoft.Extensions.Logging;
 
 namespace CityInfo.API.Controllers
 {
     [Route("api/cities/")]
     public class PointsOfInterestController : Controller {
+
+        private ILogger<PointsOfInterestController> _logger;
+
+        public PointsOfInterestController(ILogger<PointsOfInterestController> logger) {
+            _logger = logger;
+        }
+
         [HttpGet("{cityid}/pointsofinterest")]
         public IActionResult GetPointsOfInterest(int cityId) {
             var city = CitiesDataStore.Current.Cities.FirstOrDefault(c => c.Id == cityId);
             if (city == null) {
+                _logger.LogInformation($"The city with {cityId} id does not exists.");
                 return NotFound();
             }
 

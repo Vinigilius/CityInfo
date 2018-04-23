@@ -7,6 +7,7 @@ using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
+using NLog.Web;
 
 namespace CityInfo.API
 {
@@ -14,12 +15,28 @@ namespace CityInfo.API
     {
         public static void Main(string[] args)
         {
-            BuildWebHost(args).Run();
+            var logger = NLog.Web.NLogBuilder.ConfigureNLog("nlog.config").GetCurrentClassLogger();
+            try {
+                logger.Error("init main");
+                BuildWebHost(args).Run();
+            } catch (Exception ex) {
+                //NLog catches setup errors
+                logger.Error(ex, "Stopped program because of exception");
+                throw;
+            } finally {
+                // Ensure to flush and stop internal timers/threads before application-exit. We have to clean all up.
+                NLog.LogManager.Shutdown();
+            }
         }
 
         public static IWebHost BuildWebHost(string[] args) =>
             WebHost.CreateDefaultBuilder(args)
                 .UseStartup<Startup>()
+                .ConfigureLogging(logging => {
+                    logging.ClearProviders();
+                    logging.SetMinimumLevel(Microsoft.Extensions.Logging.LogLevel.Information);
+                })
+                .UseNLog()
                 .Build();
     }
 }
