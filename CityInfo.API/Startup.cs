@@ -2,11 +2,13 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using CityInfo.API.Entities;
 using CityInfo.API.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc.Formatters;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Newtonsoft.Json.Serialization;
@@ -39,10 +41,12 @@ namespace CityInfo.API
                                                                                                              //    }
                                                                                                              //});
             services.AddTransient<IMailService, LocalMailService>(); //dependency injection example with asp.net core mechanism insted of Ninject for example.
+            var connectionString = Startup.Configuration["connectionStrings:cityInfoDBConnectionString"];
+            services.AddDbContext<CityInfoContext>(o => o.UseSqlServer(connectionString));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, CityInfoContext cityInfoContext)
         {
             if (env.IsDevelopment())
             {
@@ -50,6 +54,8 @@ namespace CityInfo.API
             } else {
                 app.UseExceptionHandler();
             }
+
+            cityInfoContext.EnsureSeedDataForContext();
 
             app.UseStatusCodePages(); // I enabled it to see status code text sample pages in browser :)
 
