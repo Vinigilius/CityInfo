@@ -11,6 +11,10 @@ using NLog.Web;
 
 namespace CityInfo.API
 {
+    /// <summary>
+    /// This is the base class for runnig application. 
+    /// To test all features I used Postman, to simplyfy writing http requests and test functionality.
+    /// </summary>
     public class Program
     {
         public static void Main(string[] args)
@@ -34,9 +38,9 @@ namespace CityInfo.API
                 .UseStartup<Startup>()
                 .ConfigureLogging(logging => {
                     logging.ClearProviders();
-                    logging.SetMinimumLevel(Microsoft.Extensions.Logging.LogLevel.Information);
+                    logging.SetMinimumLevel(Microsoft.Extensions.Logging.LogLevel.Information); // We are going to log all information at minimum information level.
                 })
-                .UseNLog()
+                .UseNLog() // Starting using nlog to log informations to the files.
                 .Build();
     }
 }

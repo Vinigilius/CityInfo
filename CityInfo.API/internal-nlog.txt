@@ -4,3 +4,21 @@
 2018-04-23 15:53:20.8527 Info Adding target File Target[ownFile-web]
 2018-04-23 15:53:20.8527 Info Configured from an XML element in C:\Users\lukas\Documents\Oprogramowanie\VS2017\CityInfo.API\CityInfo.API\bin\Debug\netcoreapp2.0\nlog.config...
 2018-04-23 15:53:20.8902 Info Found 45 configuration items
+2018-04-23 16:13:58.9553 Info Message Template Auto Format enabled
+2018-04-23 16:13:58.9899 Info Loading assembly: NLog.Web.AspNetCore
+2018-04-23 16:13:59.1796 Info Adding target File Target[allfile]
+2018-04-23 16:13:59.2728 Info Adding target File Target[ownFile-web]
+2018-04-23 16:13:59.3147 Info Configured from an XML element in C:\Users\lukas\Documents\Oprogramowanie\VS2017\CityInfo.API\CityInfo.API\bin\Debug\netcoreapp2.0\nlog.config...
+2018-04-23 16:13:59.3971 Info Found 45 configuration items
+2018-04-23 16:35:10.2679 Info Message Template Auto Format enabled
+2018-04-23 16:35:10.2907 Info Loading assembly: NLog.Web.AspNetCore
+2018-04-23 16:35:10.5699 Info Adding target File Target[allfile]
+2018-04-23 16:35:10.6032 Info Adding target File Target[ownFile-web]
+2018-04-23 16:35:10.6154 Info Configured from an XML element in C:\Users\lukas\Documents\Oprogramowanie\VS2017\CityInfo.API\CityInfo.API\bin\Debug\netcoreapp2.0\nlog.config...
+2018-04-23 16:35:10.6474 Info Found 45 configuration items
+2018-04-23 16:37:45.0159 Info Message Template Auto Format enabled
+2018-04-23 16:37:45.0428 Info Loading assembly: NLog.Web.AspNetCore
+2018-04-23 16:37:45.1905 Info Adding target File Target[allfile]
+2018-04-23 16:37:45.2138 Info Adding target File Target[ownFile-web]
+2018-04-23 16:37:45.2254 Info Configured from an XML element in C:\Users\lukas\Documents\Oprogramowanie\VS2017\CityInfo.API\CityInfo.API\bin\Debug\netcoreapp2.0\nlog.config...
+2018-04-23 16:37:45.2525 Info Found 45 configuration items
