@@ -43,6 +43,8 @@ namespace CityInfo.API
             services.AddTransient<IMailService, LocalMailService>(); //dependency injection example with asp.net core mechanism insted of Ninject for example.
             var connectionString = Startup.Configuration["connectionStrings:cityInfoDBConnectionString"];
             services.AddDbContext<CityInfoContext>(o => o.UseSqlServer(connectionString));
+
+            services.AddScoped<ICityInfoRepository, CityInfoRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -58,6 +60,16 @@ namespace CityInfo.API
             cityInfoContext.EnsureSeedDataForContext();
 
             app.UseStatusCodePages(); // I enabled it to see status code text sample pages in browser :)
+
+            // Using AutoMapper to automaticly map entities to my dto objects.s
+            AutoMapper.Mapper.Initialize(cfg => {
+                cfg.CreateMap<Entities.City, Models.CityWithoutPointsOfInterestsDto>();
+                cfg.CreateMap<Entities.City, Models.CityDto>();
+                cfg.CreateMap<Entities.PointOfInterest, Models.PointOfInterestDto>();
+                cfg.CreateMap<Models.PointOfInterestForCreationDto, Entities.PointOfInterest>();
+                cfg.CreateMap<Models.PointOfInterestForUpdateDto, Entities.PointOfInterest>();
+                cfg.CreateMap<Entities.PointOfInterest, Models.PointOfInterestForUpdateDto>();
+            });
 
             app.UseMvc();
 
